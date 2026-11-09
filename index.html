@@ -3,200 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOST INTERNET</title>
-
+<title>LOST INTERNET | Unknown Network</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #080512;
-  color: white;
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: -50%;
-  background:
-    radial-gradient(circle at 30% 40%, #5414a455, transparent 35%),
-    radial-gradient(circle at 70% 60%, #0059aa44, transparent 35%);
-  animation: glow 8s ease-in-out infinite alternate;
-  z-index: -1;
-}
-
-@keyframes glow {
-  from { transform: translate(-5%, -3%); }
-  to { transform: translate(5%, 3%); }
-}
-
-.stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(#8d55ff 1px, transparent 1px);
-  background-size: 80px 80px, 130px 130px;
-  background-position: 0 0, 40px 50px;
-  opacity: .25;
-  z-index: -1;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 8%;
-  border-bottom: 1px solid #48216d66;
-}
-
-.logo {
-  color: #c59aff;
-  letter-spacing: 3px;
-  font-weight: bold;
-  text-shadow: 0 0 15px #a855f7;
-}
-
-.status {
-  color: #65f5ce;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-
-main {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px 20px;
-}
-
-.symbol {
-  font-size: 55px;
-  color: #a56bff;
-  text-shadow: 0 0 30px #873dff;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  50% { transform: translateY(-12px); }
-}
-
-h1 {
-  font-size: clamp(35px, 9vw, 75px);
-  letter-spacing: 5px;
-  margin: 25px 0 15px;
-  color: #e5d2ff;
-  text-shadow: 0 0 15px #a855f7,
-               0 0 40px #5b21b6;
-  animation: flicker 5s infinite;
-}
-
-@keyframes flicker {
-  0%, 96%, 100% { opacity: 1; }
-  97% { opacity: .5; }
-  98% { opacity: 1; }
-}
-
-.subtitle {
-  color: #64baff;
-  letter-spacing: 4px;
-  font-size: 12px;
-  margin-bottom: 25px;
-}
-
-.description {
-  color: #a99bbf;
-  font-size: 14px;
-  margin-bottom: 35px;
-}
-
-button {
-  background: transparent;
-  color: #d6b4ff;
-  border: 1px solid #a855f7;
-  padding: 16px 35px;
-  letter-spacing: 3px;
-  cursor: pointer;
-  box-shadow: 0 0 15px #7925c766;
-  transition: .3s;
-}
-
-button:hover {
-  background: #8b36d6;
-  color: white;
-  box-shadow: 0 0 30px #a855f7;
-}
-
-#message {
-  margin-top: 25px;
-  color: #70c7ff;
-  font-size: 13px;
-  min-height: 20px;
-}
-
-footer {
-  text-align: center;
-  padding: 25px;
-  color: #706184;
-  font-size: 10px;
-  letter-spacing: 2px;
-  border-top: 1px solid #48216d66;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--purple:#a855f7;--blue:#42baff;--bg:#080512}
+body{background:var(--bg);color:#eee;font-family:Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-50%;z-index:-2;background:radial-gradient(ellipse at 20% 30%,#5114a855,transparent 40%),radial-gradient(ellipse at 80% 70%,#005bba44,transparent 40%);animation:glow 10s infinite alternate}
+@keyframes glow{to{transform:translate(8%,5%) scale(1.1)}}
+.stars{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#a855f7 1px,transparent 1px);background-size:90px 90px,140px 140px;background-position:0 0,40px 50px;opacity:.3}
+header{padding:20px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #6e35a544}
+.logo{color:#d2a9ff;font-weight:bold;letter-spacing:3px;text-shadow:0 0 15px var(--purple)}
+.status{font-size:10px;color:#66efc0;letter-spacing:2px}
+main{max-width:950px;margin:auto;padding:55px 20px}
+.hero{text-align:center;padding:45px 0 55px}
+.symbol{font-size:48px;color:#bd8aff;text-shadow:0 0 25px var(--purple);animation:float 3s infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+h1{font-size:clamp(35px,9vw,72px);letter-spacing:4px;color:#e8d5ff;text-shadow:0 0 15px var(--purple),0 0 40px #6420a9;margin:20px 0}
+.subtitle{color:var(--blue);font-size:11px;letter-spacing:4px}
+.desc{color:#a99bbf;font-size:14px;margin:20px 0}
+button{background:#120b20;border:1px solid #9854db;color:#d9baff;padding:13px 19px;cursor:pointer;letter-spacing:1px;transition:.25s;border-radius:4px}
+button:hover{background:#712db0;box-shadow:0 0 22px #9c4de9}
+.section-title{color:#c89aff;letter-spacing:3px;font-size:17px;margin:35px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.room{background:#100b1cdd;border:1px solid #7040a655;padding:22px;border-radius:8px;transition:.3s;cursor:pointer}
+.room:hover{transform:translateY(-5px);border-color:#ae69ff;box-shadow:0 0 20px #7629aa44}
+.room .emoji{font-size:25px}
+.room h3{color:#d9baff;margin:12px 0 7px;font-size:15px}
+.room p{color:#9385a9;font-size:12px;line-height:1.6}
+.panel{margin-top:18px;background:#0e0a19;border:1px solid #503076;padding:20px;border-radius:8px}
+.panel h3{color:#a879ff;margin-bottom:12px}
+input{background:#080512;border:1px solid #68418e;color:white;padding:13px;width:100%;margin:8px 0;outline:none;border-radius:4px}
+input:focus{border-color:#ad72ff;box-shadow:0 0 10px #8239bd55}
+#output{color:#77caff;font:13px monospace;line-height:1.8;margin-top:12px;white-space:pre-wrap;min-height:24px}
+#notice{color:#c9a6ff;font-size:13px;line-height:1.7;margin-top:12px;min-height:25px}
+footer{text-align:center;color:#655676;font-size:10px;letter-spacing:2px;padding:30px;border-top:1px solid #6e35a544}
+@media(max-width:500px){.grid{grid-template-columns:1fr}main{padding-top:25px}.hero{padding:35px 0}}
 </style>
 </head>
-
 <body>
-
 <div class="stars"></div>
-
 <header>
-  <div class="logo">LOST INTERNET</div>
-  <div class="status">● SİSTEM AKTİF</div>
+<div class="logo">◈ LOST INTERNET</div>
+<div class="status">● SİSTEM AKTİF</div>
 </header>
 
 <main>
-  <div class="symbol">⌘</div>
+<section class="hero">
+<div class="symbol">⌘</div>
+<h1>LOST INTERNET</h1>
+<div class="subtitle">İNTERNETİN KAYBOLMUŞ BİR KÖŞESİ</div>
+<p class="desc">Buraya ait değilsin. Ama artık buradasın.</p>
+<button onclick="document.getElementById('rooms').scrollIntoView({behavior:'smooth'})">KEŞFETMEYE BAŞLA ↓</button>
+</section>
 
-  <h1>LOST INTERNET</h1>
+<h2 class="section-title" id="rooms">// GİZLİ BÖLGELER</h2>
+<div class="grid">
+<div class="room" onclick="openRoom('archive')">
+<div class="emoji">📁</div><h3>GİZLİ ARŞİV</h3>
+<p>Bazı dosyalar herkes için değildir.</p>
+</div>
+<div class="room" onclick="openRoom('terminal')">
+<div class="emoji">⌨️</div><h3>DİJİTAL TERMİNAL</h3>
+<p>Sisteme komut gönder. Bakalım ne olacak.</p>
+</div>
+<div class="room" onclick="openRoom('void')">
+<div class="emoji">🌌</div><h3>BOŞLUK</h3>
+<p>Hiçliğin içinde bir şey bulabilecek misin?</p>
+</div>
+<div class="room" onclick="openRoom('secret')">
+<div class="emoji">🔮</div><h3>BİLİNMEYEN</h3>
+<p>Henüz kimsenin keşfetmediği bir yer.</p>
+</div>
+</div>
 
-  <div class="subtitle">
-    İNTERNETİN KAYBOLMUŞ BİR KÖŞESİ
-  </div>
+<div class="panel" id="archive">
+<h3>📁 ŞİFRELİ ARŞİV</h3>
+<p style="color:#9585a9;font-size:12px">Dosyaya erişmek için şifreyi gir.</p>
+<input id="password" placeholder="Şifreyi buraya yaz..." type="password">
+<button onclick="unlock()">DOSYAYI AÇ →</button>
+<div id="notice"></div>
+</div>
 
-  <p class="description">
-    Buraya ait değilsin. Ama artık buradasın.
-  </p>
+<div class="panel" id="terminal">
+<h3>⌨️ LOST TERMINAL v1.0</h3>
+<p style="color:#9585a9;font-size:12px">Komutlardan birini dene: help, about, date, secret</p>
+<input id="command" placeholder="Bir komut yaz..." onkeydown="if(event.key==='Enter')runCommand()">
+<button onclick="runCommand()">ÇALIŞTIR →</button>
+<div id="output">Sistem hazır. Komut bekleniyor...</div>
+</div>
 
-  <button onclick="enterSite()">
-    SİSTEME GİR →
-  </button>
-
-  <div id="message">
-    BAĞLANTI BEKLENİYOR...
-  </div>
 </main>
-
-<footer>
-  LOST NETWORK ©️ 2026 — TÜM SİSTEMLER GİZLİ
-</footer>
+<footer>LOST NETWORK ©️ 2026 — BAĞLANTI: GİZLİ</footer>
 
 <script>
-function enterSite() {
-  document.getElementById("message").innerText =
-    "BAĞLANTI KURULUYOR... YENİ DÜNYAYA HOŞ GELDİN.";
+function openRoom(id){
+const messages={
+archive:"ARŞİV BÖLÜMÜNE GİRDİN. Şifreyi çözebilir misin?",
+terminal:"TERMINAL AKTİF. Bir komut gir.",
+void:"BOŞLUKTASIN. Bazen hiçbir şey, her şeydir.",
+secret:"BİLİNMEYEN BÖLGE. Buraya ulaşan ilk kişilerden birisin."
+};
+if(id==="archive"||id==="terminal"){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}else{
+document.getElementById("notice").innerText=messages[id];
+document.getElementById("archive").scrollIntoView({behavior:"smooth"});
+}
+}
+function unlock(){
+const p=document.getElementById("password").value;
+const n=document.getElementById("notice");
+if(p==="404"){
+n.innerHTML="✓ ERİŞİM ONAYLANDI<br><br>Dosya 001: Her kayboluş, yeni bir başlangıcın kapısıdır.<br>Dosya 002: İnternetin sonu henüz keşfedilmedi.<br>Dosya 003: Aramaya devam et...";
+}else{
+n.innerText="✕ ERİŞİM REDDEDİLDİ. Tekrar dene.";
+}
+}
+function runCommand(){
+const c=document.getElementById("command").value.trim().toLowerCase();
+const o=document.getElementById("output");
+const commands={
+help:"KULLANILABİLİR KOMUTLAR:\nhelp - Komutları göster\nabout - Sistem hakkında\n date - Tarih ve saat\nsecret - Gizli mesaj",
+about:"LOST INTERNET v1.0\nBilinmeyen bir dijital evren.\nKuruluş: 2026",
+secret:"SENİ BURAYA GETİREN ŞEY TESADÜF DEĞİL.",
+date:new Date().toLocaleString("tr-TR")
+};
+o.innerText=commands[c]||"HATA: Bilinmeyen komut. help yazmayı dene.";
+document.getElementById("command").value="";
 }
 </script>
-
 </body>
 </html>
