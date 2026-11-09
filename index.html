@@ -2,134 +2,166 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOST INTERNET | Unknown Network</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LOST INTERNET // 3.0</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--purple:#a855f7;--blue:#42baff;--bg:#080512}
+:root{--p:#b45cff;--b:#42c8ff;--bg:#070511}
 body{background:var(--bg);color:#eee;font-family:Arial,sans-serif;min-height:100vh;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:-50%;z-index:-2;background:radial-gradient(ellipse at 20% 30%,#5114a855,transparent 40%),radial-gradient(ellipse at 80% 70%,#005bba44,transparent 40%);animation:glow 10s infinite alternate}
-@keyframes glow{to{transform:translate(8%,5%) scale(1.1)}}
-.stars{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#a855f7 1px,transparent 1px);background-size:90px 90px,140px 140px;background-position:0 0,40px 50px;opacity:.3}
-header{padding:20px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #6e35a544}
-.logo{color:#d2a9ff;font-weight:bold;letter-spacing:3px;text-shadow:0 0 15px var(--purple)}
-.status{font-size:10px;color:#66efc0;letter-spacing:2px}
-main{max-width:950px;margin:auto;padding:55px 20px}
-.hero{text-align:center;padding:45px 0 55px}
-.symbol{font-size:48px;color:#bd8aff;text-shadow:0 0 25px var(--purple);animation:float 3s infinite}
+body:before{content:"";position:fixed;inset:-50%;z-index:-2;background:radial-gradient(circle at 20% 30%,#7313a655,transparent 35%),radial-gradient(circle at 80% 70%,#005bba55,transparent 35%);animation:bg 12s infinite alternate}
+@keyframes bg{to{transform:translate(8%,6%) scale(1.1)}}
+.stars{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#a855f7 1px,transparent 1px);background-size:90px 90px,140px 140px;opacity:.25}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 7%;border-bottom:1px solid #8138b544}
+.logo{color:#d7b0ff;letter-spacing:3px;font-weight:bold;text-shadow:0 0 15px var(--p)}
+.status{color:#5bf5bd;font-size:10px;letter-spacing:2px}
+main{max-width:950px;margin:auto;padding:35px 20px}
+.hero{text-align:center;padding:45px 0}
+.symbol{font-size:50px;color:var(--p);text-shadow:0 0 30px var(--p);animation:float 3s infinite}
 @keyframes float{50%{transform:translateY(-12px)}}
-h1{font-size:clamp(35px,9vw,72px);letter-spacing:4px;color:#e8d5ff;text-shadow:0 0 15px var(--purple),0 0 40px #6420a9;margin:20px 0}
-.subtitle{color:var(--blue);font-size:11px;letter-spacing:4px}
-.desc{color:#a99bbf;font-size:14px;margin:20px 0}
-button{background:#120b20;border:1px solid #9854db;color:#d9baff;padding:13px 19px;cursor:pointer;letter-spacing:1px;transition:.25s;border-radius:4px}
-button:hover{background:#712db0;box-shadow:0 0 22px #9c4de9}
-.section-title{color:#c89aff;letter-spacing:3px;font-size:17px;margin:35px 0 18px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
-.room{background:#100b1cdd;border:1px solid #7040a655;padding:22px;border-radius:8px;transition:.3s;cursor:pointer}
-.room:hover{transform:translateY(-5px);border-color:#ae69ff;box-shadow:0 0 20px #7629aa44}
-.room .emoji{font-size:25px}
-.room h3{color:#d9baff;margin:12px 0 7px;font-size:15px}
-.room p{color:#9385a9;font-size:12px;line-height:1.6}
-.panel{margin-top:18px;background:#0e0a19;border:1px solid #503076;padding:20px;border-radius:8px}
-.panel h3{color:#a879ff;margin-bottom:12px}
-input{background:#080512;border:1px solid #68418e;color:white;padding:13px;width:100%;margin:8px 0;outline:none;border-radius:4px}
-input:focus{border-color:#ad72ff;box-shadow:0 0 10px #8239bd55}
-#output{color:#77caff;font:13px monospace;line-height:1.8;margin-top:12px;white-space:pre-wrap;min-height:24px}
-#notice{color:#c9a6ff;font-size:13px;line-height:1.7;margin-top:12px;min-height:25px}
-footer{text-align:center;color:#655676;font-size:10px;letter-spacing:2px;padding:30px;border-top:1px solid #6e35a544}
-@media(max-width:500px){.grid{grid-template-columns:1fr}main{padding-top:25px}.hero{padding:35px 0}}
+h1{font-size:clamp(35px,9vw,75px);letter-spacing:5px;color:#f0ddff;text-shadow:0 0 15px var(--p),0 0 40px #6722ac;margin:20px 0}
+.subtitle{color:var(--b);letter-spacing:4px;font-size:11px}
+.desc{color:#a99bbf;margin:20px 0 30px;font-size:14px}
+button{background:#10091e;color:#dcbaff;border:1px solid #a855f7;padding:13px 19px;cursor:pointer;letter-spacing:1px;border-radius:4px;transition:.25s}
+button:hover{background:#762bb5;box-shadow:0 0 22px #a855f7;transform:translateY(-2px)}
+.section-title{color:#c58cff;font-size:16px;letter-spacing:3px;margin:30px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.room{background:#100a1ddd;border:1px solid #713da766;border-radius:8px;padding:23px;cursor:pointer;transition:.3s}
+.room:hover{transform:translateY(-5px);border-color:#bd7aff;box-shadow:0 0 25px #8435c655}
+.emoji{font-size:28px}
+.room h3{color:#dfc4ff;margin:13px 0 8px;font-size:15px}
+.room p{color:#9687ac;font-size:12px;line-height:1.6}
+.view{display:none;min-height:370px;background:#0d0919;border:1px solid #8748bb88;padding:25px;border-radius:9px;margin-top:25px;animation:appear .4s}
+.view.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.view h2{color:#c99aff;margin-bottom:15px;letter-spacing:2px}
+.view p{color:#a99bbf;font-size:13px;line-height:1.8;margin:12px 0}
+input{background:#070511;border:1px solid #69428c;color:white;padding:14px;width:100%;margin:12px 0;outline:none;border-radius:4px}
+input:focus{border-color:var(--b);box-shadow:0 0 12px #42baff55}
+.output{background:#070511;border-left:2px solid var(--b);padding:14px;color:#77caff;font:13px monospace;line-height:1.8;white-space:pre-wrap;min-height:50px;margin-top:15px}
+.file{border:1px solid #49305d;padding:14px;margin:12px 0;border-radius:5px;color:#bba4d6;font-size:13px}
+.back{margin-bottom:22px}
+footer{text-align:center;padding:30px;color:#716183;font-size:10px;letter-spacing:2px;border-top:1px solid #62338b44;margin-top:45px}
+@media(max-width:500px){.grid{grid-template-columns:1fr}main{padding:20px 16px}.hero{padding:35px 0}}
 </style>
 </head>
 <body>
 <div class="stars"></div>
+
 <header>
 <div class="logo">◈ LOST INTERNET</div>
-<div class="status">● SİSTEM AKTİF</div>
+<div class="status">● ONLINE</div>
 </header>
 
 <main>
-<section class="hero">
+<section id="home">
+<div class="hero">
 <div class="symbol">⌘</div>
 <h1>LOST INTERNET</h1>
 <div class="subtitle">İNTERNETİN KAYBOLMUŞ BİR KÖŞESİ</div>
 <p class="desc">Buraya ait değilsin. Ama artık buradasın.</p>
-<button onclick="document.getElementById('rooms').scrollIntoView({behavior:'smooth'})">KEŞFETMEYE BAŞLA ↓</button>
+<button onclick="document.getElementById('rooms').scrollIntoView({behavior:'smooth'})">DÜNYAYI KEŞFET ↓</button>
+</div>
+
+<h2 class="section-title" id="rooms">// ERİŞİLEBİLİR BÖLGELER</h2>
+<div class="grid">
+<div class="room" onclick="showRoom('archive')">
+<div class="emoji">📁</div><h3>GİZLİ ARŞİV</h3>
+<p>Unutulmuş dosyalar ve şifreli belgeler.</p>
+</div>
+<div class="room" onclick="showRoom('terminal')">
+<div class="emoji">⌨️</div><h3>TERMINAL</h3>
+<p>Sisteme komut gönder. Cevapları keşfet.</p>
+</div>
+<div class="room" onclick="showRoom('void')">
+<div class="emoji">🌌</div><h3>BOŞLUK</h3>
+<p>Hiçliğin içinde kaybolmaya hazır mısın?</p>
+</div>
+<div class="room" onclick="showRoom('gate')">
+<div class="emoji">🔐</div><h3>GİZLİ KAPI</h3>
+<p>Herkes buraya giremez.</p>
+</div>
+</div>
 </section>
 
-<h2 class="section-title" id="rooms">// GİZLİ BÖLGELER</h2>
-<div class="grid">
-<div class="room" onclick="openRoom('archive')">
-<div class="emoji">📁</div><h3>GİZLİ ARŞİV</h3>
-<p>Bazı dosyalar herkes için değildir.</p>
-</div>
-<div class="room" onclick="openRoom('terminal')">
-<div class="emoji">⌨️</div><h3>DİJİTAL TERMİNAL</h3>
-<p>Sisteme komut gönder. Bakalım ne olacak.</p>
-</div>
-<div class="room" onclick="openRoom('void')">
-<div class="emoji">🌌</div><h3>BOŞLUK</h3>
-<p>Hiçliğin içinde bir şey bulabilecek misin?</p>
-</div>
-<div class="room" onclick="openRoom('secret')">
-<div class="emoji">🔮</div><h3>BİLİNMEYEN</h3>
-<p>Henüz kimsenin keşfetmediği bir yer.</p>
-</div>
-</div>
+<section class="view" id="archive">
+<button class="back" onclick="goHome()">← ANA SAYFA</button>
+<h2>📁 GİZLİ ARŞİV</h2>
+<p>Sunucuda bulunan eski dosyalar:</p>
+<div class="file">FILE_001.dat — Bilinmeyen başlangıç</div>
+<div class="file">FILE_002.dat — Son bağlantı</div>
+<div class="file">FILE_003.dat — Kayıp kullanıcı</div>
+<p>Dosyaların içeriğini görmek için terminali keşfet.</p>
+</section>
 
-<div class="panel" id="archive">
-<h3>📁 ŞİFRELİ ARŞİV</h3>
-<p style="color:#9585a9;font-size:12px">Dosyaya erişmek için şifreyi gir.</p>
-<input id="password" placeholder="Şifreyi buraya yaz..." type="password">
-<button onclick="unlock()">DOSYAYI AÇ →</button>
-<div id="notice"></div>
-</div>
+<section class="view" id="terminal">
+<button class="back" onclick="goHome()">← ANA SAYFA</button>
+<h2>⌨️ DIGITAL TERMINAL</h2>
+<p>Komut gir. Yardım için <b>help</b> yaz.</p>
+<input id="cmd" placeholder="Komut yaz..." onkeydown="if(event.key==='Enter')run()">
+<button onclick="run()">ÇALIŞTIR →</button>
+<div class="output" id="out">LOST OS v3.0 başlatıldı...
+Sistem komut bekliyor.</div>
+</section>
 
-<div class="panel" id="terminal">
-<h3>⌨️ LOST TERMINAL v1.0</h3>
-<p style="color:#9585a9;font-size:12px">Komutlardan birini dene: help, about, date, secret</p>
-<input id="command" placeholder="Bir komut yaz..." onkeydown="if(event.key==='Enter')runCommand()">
-<button onclick="runCommand()">ÇALIŞTIR →</button>
-<div id="output">Sistem hazır. Komut bekleniyor...</div>
-</div>
+<section class="view" id="void">
+<button class="back" onclick="goHome()">← ANA SAYFA</button>
+<h2>🌌 THE VOID</h2>
+<p>Burada zamanın anlamı yok.</p>
+<p>Ne kadar derine inersen, o kadar az şey görürsün.</p>
+<p style="color:#bd8aff;text-shadow:0 0 12px #a855f7">Bazen kaybolmak, kendini bulmanın tek yoludur.</p>
+<button onclick="this.innerText='MESAJ ALINDI ✓';this.nextElementSibling.innerText='SİSTEM SENİ FARK ETTİ.'">GİZLİ MESAJI BUL</button>
+<p id="voidmsg"></p>
+</section>
+
+<section class="view" id="gate">
+<button class="back" onclick="goHome()">← ANA SAYFA</button>
+<h2>🔐 RESTRICTED AREA</h2>
+<p>Bu kapının arkasında başka bir dünya var.</p>
+<p>Erişim kodunu gir:</p>
+<input id="pass" type="password" placeholder="Erişim kodu...">
+<button onclick="unlock()">KİMLİĞİ DOĞRULA</button>
+<div class="output" id="gateout">ERİŞİM BEKLENİYOR...</div>
+</section>
 
 </main>
-<footer>LOST NETWORK ©️ 2026 — BAĞLANTI: GİZLİ</footer>
+
+<footer>LOST NETWORK ©️ 2026 — UNKNOWN CONNECTION</footer>
 
 <script>
-function openRoom(id){
-const messages={
-archive:"ARŞİV BÖLÜMÜNE GİRDİN. Şifreyi çözebilir misin?",
-terminal:"TERMINAL AKTİF. Bir komut gir.",
-void:"BOŞLUKTASIN. Bazen hiçbir şey, her şeydir.",
-secret:"BİLİNMEYEN BÖLGE. Buraya ulaşan ilk kişilerden birisin."
-};
-if(id==="archive"||id==="terminal"){
-document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}else{
-document.getElementById("notice").innerText=messages[id];
-document.getElementById("archive").scrollIntoView({behavior:"smooth"});
+function showRoom(id){
+document.getElementById('home').style.display='none';
+document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo({top:0,behavior:'smooth'});
 }
+function goHome(){
+document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+document.getElementById('home').style.display='block';
+window.scrollTo({top:0,behavior:'smooth'});
+}
+function run(){
+let c=document.getElementById('cmd').value.trim().toLowerCase();
+let answers={
+help:"KOMUTLAR:\nhelp - Yardım\nabout - Sistem bilgisi\ndate - Tarih\nsecret - Gizli mesaj\nclear - Ekranı temizle\nrooms - Bölümler",
+about:"LOST OS v3.0\nKuruluş: 2026\nDurum: Bilinmeyen\nKonum: Dijital boşluk",
+date:new Date().toLocaleString('tr-TR'),
+secret:"SİSTEM MESAJI: BAZI KAPILAR SADECE MERAK EDENLERE AÇILIR.",
+rooms:"4 BÖLGE TESPİT EDİLDİ. ANA SAYFAYA DÖN VE KEŞFET.",
+clear:""
+};
+let o=document.getElementById('out');
+if(c==='clear'){o.innerText="TERMINAL TEMİZLENDİ."}
+else{o.innerText=answers[c]||"HATA: KOMUT TANINMADI.\nhelp yazarak komutları görebilirsin."}
+document.getElementById('cmd').value='';
 }
 function unlock(){
-const p=document.getElementById("password").value;
-const n=document.getElementById("notice");
-if(p==="404"){
-n.innerHTML="✓ ERİŞİM ONAYLANDI<br><br>Dosya 001: Her kayboluş, yeni bir başlangıcın kapısıdır.<br>Dosya 002: İnternetin sonu henüz keşfedilmedi.<br>Dosya 003: Aramaya devam et...";
+let p=document.getElementById('pass').value;
+let o=document.getElementById('gateout');
+if(p==='404'){
+o.innerText="✓ ERİŞİM ONAYLANDI\n\nGİZLİ MESAJ:\nSENİ BURAYA GETİREN MERAKIN.\n\nBİR SONRAKİ KAPI HENÜZ AÇILMADI...";
 }else{
-n.innerText="✕ ERİŞİM REDDEDİLDİ. Tekrar dene.";
+o.innerText="✕ ERİŞİM REDDEDİLDİ.\nİPUCU: KAYIP BİR SAYFA NUMARASI.";
 }
-}
-function runCommand(){
-const c=document.getElementById("command").value.trim().toLowerCase();
-const o=document.getElementById("output");
-const commands={
-help:"KULLANILABİLİR KOMUTLAR:\nhelp - Komutları göster\nabout - Sistem hakkında\n date - Tarih ve saat\nsecret - Gizli mesaj",
-about:"LOST INTERNET v1.0\nBilinmeyen bir dijital evren.\nKuruluş: 2026",
-secret:"SENİ BURAYA GETİREN ŞEY TESADÜF DEĞİL.",
-date:new Date().toLocaleString("tr-TR")
-};
-o.innerText=commands[c]||"HATA: Bilinmeyen komut. help yazmayı dene.";
-document.getElementById("command").value="";
 }
 </script>
 </body>
