@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOST INTERNET</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #080512;
+  color: white;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  background:
+    radial-gradient(circle at 30% 40%, #5414a455, transparent 35%),
+    radial-gradient(circle at 70% 60%, #0059aa44, transparent 35%);
+  animation: glow 8s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes glow {
+  from { transform: translate(-5%, -3%); }
+  to { transform: translate(5%, 3%); }
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(#8d55ff 1px, transparent 1px);
+  background-size: 80px 80px, 130px 130px;
+  background-position: 0 0, 40px 50px;
+  opacity: .25;
+  z-index: -1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 8%;
+  border-bottom: 1px solid #48216d66;
+}
+
+.logo {
+  color: #c59aff;
+  letter-spacing: 3px;
+  font-weight: bold;
+  text-shadow: 0 0 15px #a855f7;
+}
+
+.status {
+  color: #65f5ce;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+main {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.symbol {
+  font-size: 55px;
+  color: #a56bff;
+  text-shadow: 0 0 30px #873dff;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px); }
+}
+
+h1 {
+  font-size: clamp(35px, 9vw, 75px);
+  letter-spacing: 5px;
+  margin: 25px 0 15px;
+  color: #e5d2ff;
+  text-shadow: 0 0 15px #a855f7,
+               0 0 40px #5b21b6;
+  animation: flicker 5s infinite;
+}
+
+@keyframes flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: .5; }
+  98% { opacity: 1; }
+}
+
+.subtitle {
+  color: #64baff;
+  letter-spacing: 4px;
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+.description {
+  color: #a99bbf;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+button {
+  background: transparent;
+  color: #d6b4ff;
+  border: 1px solid #a855f7;
+  padding: 16px 35px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #7925c766;
+  transition: .3s;
+}
+
+button:hover {
+  background: #8b36d6;
+  color: white;
+  box-shadow: 0 0 30px #a855f7;
+}
+
+#message {
+  margin-top: 25px;
+  color: #70c7ff;
+  font-size: 13px;
+  min-height: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #706184;
+  font-size: 10px;
+  letter-spacing: 2px;
+  border-top: 1px solid #48216d66;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<header>
+  <div class="logo">LOST INTERNET</div>
+  <div class="status">● SİSTEM AKTİF</div>
+</header>
+
+<main>
+  <div class="symbol">⌘</div>
+
+  <h1>LOST INTERNET</h1>
+
+  <div class="subtitle">
+    İNTERNETİN KAYBOLMUŞ BİR KÖŞESİ
+  </div>
+
+  <p class="description">
+    Buraya ait değilsin. Ama artık buradasın.
+  </p>
+
+  <button onclick="enterSite()">
+    SİSTEME GİR →
+  </button>
+
+  <div id="message">
+    BAĞLANTI BEKLENİYOR...
+  </div>
+</main>
+
+<footer>
+  LOST NETWORK ©️ 2026 — TÜM SİSTEMLER GİZLİ
+</footer>
+
+<script>
+function enterSite() {
+  document.getElementById("message").innerText =
+    "BAĞLANTI KURULUYOR... YENİ DÜNYAYA HOŞ GELDİN.";
+}
+</script>
+
+</body>
+</html>
