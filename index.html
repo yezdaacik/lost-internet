@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOST INTERNET</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#050510;color:#eee;font-family:Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 20% 20%,#25104c,transparent 50%),radial-gradient(ellipse at 80% 70%,#071c4b,transparent 50%),#050510}
+header{text-align:center;padding:55px 15px 25px}
+h1{font-size:clamp(38px,9vw,75px);letter-spacing:8px;color:#d9aaff;text-shadow:0 0 15px #a020f0,0 0 35px #5533ff}
+.subtitle{color:#aaa;letter-spacing:4px;font-size:12px}
+button{background:transparent;border:1px solid #a855f7;color:#e8caff;padding:12px 20px;border-radius:8px;cursor:pointer;margin:5px;transition:.2s}
+button:hover{background:#7726b5;color:white;box-shadow:0 0 20px #a855f7}
+main{max-width:900px;margin:auto;padding:15px}
+.panel{background:#101020cc;border:1px solid #49316b;border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 0 25px #42107822}
+h2{color:#c58aff}
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.room{padding:25px 12px;text-align:center;border:1px solid #583b80;border-radius:12px;background:#151326;cursor:pointer}
+.room:hover{border-color:#c58aff;box-shadow:0 0 18px #853bce}
+.hidden{display:none!important}
+input{width:100%;background:#080812;border:1px solid #7146a0;border-radius:7px;padding:13px;color:white;margin:8px 0;outline:none}
+#out{white-space:pre-wrap;color:#8affb4;line-height:1.7;min-height:60px;margin-top:15px;font-family:monospace}
+.terminal{background:#020805;border:1px solid #1d7543;border-radius:10px;padding:15px;font-family:monospace}
+.terminal input{border-color:#1d7543;color:#8affb4}
+.green{color:#75ff9b}
+footer{text-align:center;color:#666;padding:35px;font-size:12px}
+#matrixCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:.18;pointer-events:none}
+</style>
+</head>
+<body>
+<canvas id="matrixCanvas"></canvas>
+
+<header>
+<h1>LOST INTERNET</h1>
+<div class="subtitle">İNTERNETİN KAYBOLMUŞ BİR KÖŞESİ</div>
+<p style="color:#aaa">Buraya ait olmayan bir şey bulabilirsin.</p>
+<button onclick="show('home')">SİSTEME GİR</button>
+</header>
+
+<main>
+<section id="home">
+<div class="panel">
+<h2>◈ KAYIP AĞA HOŞ GELDİN</h2>
+<p>Her şey göründüğü gibi değildir. Bazı dosyalar saklanır, bazı kapılar bekler.</p>
+<p class="green">SİSTEM DURUMU: ÇEVRİM İÇİ</p>
+</div>
+<div class="panel">
+<h2>◈ KEŞFEDİLECEK BÖLGELER</h2>
+<div class="rooms">
+<div class="room" onclick="show('archive')">📁<br><br>Gizli Arşiv</div>
+<div class="room" onclick="show('terminal')">⌨️<br><br>Terminal</div>
+<div class="room" onclick="show('void')">🌌<br><br>Boşluk</div>
+<div class="room" onclick="show('gate')">🔒<br><br>Gizli Kapı</div>
+</div>
+</div>
+</section>
+
+<section id="archive" class="hidden panel">
+<h2>📁 GİZLİ ARŞİV</h2>
+<p>Dosyalar arasında bir şey saklı...</p>
+<p>FILE_001 — Kayıp kullanıcı</p>
+<p>FILE_002 — Silinmiş anılar</p>
+<p>FILE_003 — Bulunamayan sayfa</p>
+<button onclick="show('home')">← GERİ DÖN</button>
+</section>
+
+<section id="terminal" class="hidden panel">
+<h2>⌨️ LOST TERMINAL v4.0</h2>
+<p class="green">Sistem hazır. Komut için help yaz.</p>
+<div class="terminal">
+<div id="out">LOST OS BAŞLATILDI...</div>
+<input id="cmd" placeholder="Komut yaz..." autocomplete="off">
+<button onclick="run()">ÇALIŞTIR ↵</button>
+</div>
+<button onclick="show('home')">← GERİ DÖN</button>
+</section>
+
+<section id="void" class="hidden panel">
+<h2>🌌 BOŞLUK</h2>
+<p>Burada zamanın bir anlamı yok.</p>
+<p class="green">Eğer bu mesajı okuyorsan, hâlâ bağlantıdasın.</p>
+<button onclick="show('home')">← GERİ DÖN</button>
+</section>
+
+<section id="gate" class="hidden panel">
+<h2>🔒 GİZLİ KAPI</h2>
+<p>Kapı bir şifre bekliyor.</p>
+<input id="password" placeholder="Şifreyi gir...">
+<button onclick="unlock()">KAPIYI AÇ</button>
+<p id="gateResult"></p>
+<button onclick="show('home')">← GERİ DÖN</button>
+</section>
+</main>
+
+<footer>LOST INTERNET © 2026 — UNKNOWN NETWORK</footer>
+
+<script>
+function show(id){
+document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+document.getElementById(id).classList.remove('hidden');
+}
+
+function run(){
+let c=document.getElementById('cmd').value.trim().toLowerCase();
+let o=document.getElementById('out');
+let answers={
+help:"KOMUTLAR:\nhelp\nabout\ndate\nsecret\nrooms\nmatrix\nhack\nwhoami\nunlock\nclear",
+about:"LOST OS v4.0\nKuruluş: 2026\nDurum: Bilinmeyen\nKonum: Dijital boşluk",
+date:new Date().toLocaleString('tr-TR'),
+secret:"SİSTEM MESAJI:\nBAZI KAPILAR SADECE MERAK EDENLERE AÇILIR.",
+rooms:"4 BÖLGE TESPİT EDİLDİ.\nANA SAYFAYA DÖN VE KEŞFET.",
+matrix:"WAKE UP...\nTHE MATRIX HAS YOU.\n01001000 01000001 01000011 01001011",
+hack:"SİSTEME BAĞLANILIYOR...\nIP ADRESİ GİZLENİYOR...\nGÜVENLİK DUVARI AŞILDI...\nŞAKA :) BU SADECE BİR SİMÜLASYON.",
+whoami:"KULLANICI: UNKNOWN\nKONUM: LOST INTERNET\nDURUM: KAYIP\nKİMLİK: HENÜZ BULUNAMADI.",
+unlock:"GİZLİ KAPI TESPİT EDİLDİ.\nİPUCU: KAYIP SAYFALARIN NUMARASINI HATIRLA.\n404"
+};
+if(c==="clear"){o.textContent="TERMINAL TEMİZLENDİ.";}
+else if(c==="matrix"){
+o.textContent=answers.matrix+"\n\n[ MATRIX MODU AKTİF ]";
+document.body.classList.add('matrix-mode');
+}else{
+o.textContent=answers[c]||"HATA: KOMUT TANINMADI.\nhelp yazarak komutları görebilirsin.";
+}
+document.getElementById('cmd').value='';
+}
+
+document.getElementById('cmd').addEventListener('keydown',e=>{
+if(e.key==="Enter")run();
+});
+
+function unlock(){
+let p=document.getElementById('password').value;
+let r=document.getElementById('gateResult');
+if(p==="404"){
+r.textContent="✓ KAPI AÇILDI. ARADIĞIN ŞEY HER ZAMAN BURADAYDI.";
+r.style.color="#75ff9b";
+}else{
+r.textContent="✕ ERİŞİM REDDEDİLDİ.";
+r.style.color="#ff6b8a";
+}
+}
+
+const canvas=document.getElementById('matrixCanvas');
+const ctx=canvas.getContext('2d');
+let drops=[];
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+drops=Array(Math.floor(canvas.width/18)).fill(1);
+}
+resize();
+window.addEventListener('resize',resize);
+function drawMatrix(){
+ctx.fillStyle="rgba(5,5,16,0.08)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#42ff83";
+ctx.font="14px monospace";
+drops.forEach((y,i)=>{
+let char=String.fromCharCode(0x30A0+Math.random()*96);
+ctx.fillText(char,i*18,y*18);
+if(y*18>canvas.height&&Math.random()>.975)drops[i]=0;
+drops[i]++;
+});
+}
+setInterval(drawMatrix,65);
+</script>
+</body>
+</html>
