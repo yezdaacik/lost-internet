@@ -9,23 +9,29 @@
 *{box-sizing:border-box}
 body{margin:0;background:#050510;color:#eee;font-family:Arial,sans-serif;min-height:100vh;overflow-x:hidden}
 body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 20% 20%,#25104c,transparent 50%),radial-gradient(ellipse at 80% 70%,#071c4b,transparent 50%),#050510}
-header{text-align:center;padding:55px 15px 25px}
+header{text-align:center;padding:45px 15px 25px}
 h1{font-size:clamp(38px,9vw,75px);letter-spacing:8px;color:#d9aaff;text-shadow:0 0 15px #a020f0,0 0 35px #5533ff}
 .subtitle{color:#aaa;letter-spacing:4px;font-size:12px}
-button{background:transparent;border:1px solid #a855f7;color:#e8caff;padding:12px 20px;border-radius:8px;cursor:pointer;margin:5px;transition:.2s}
+button{background:transparent;border:1px solid #a855f7;color:#e8caff;padding:12px 20px;border-radius:8px;cursor:pointer;margin:5px}
 button:hover{background:#7726b5;color:white;box-shadow:0 0 20px #a855f7}
+button:disabled{opacity:.5;cursor:wait}
 main{max-width:900px;margin:auto;padding:15px}
-.panel{background:#101020cc;border:1px solid #49316b;border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 0 25px #42107822}
+.panel{background:#101020ee;border:1px solid #49316b;border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 0 25px #42107822}
 h2{color:#c58aff}
-.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
 .room{padding:25px 12px;text-align:center;border:1px solid #583b80;border-radius:12px;background:#151326;cursor:pointer}
 .room:hover{border-color:#c58aff;box-shadow:0 0 18px #853bce}
 .hidden{display:none!important}
-input{width:100%;background:#080812;border:1px solid #7146a0;border-radius:7px;padding:13px;color:white;margin:8px 0;outline:none}
+input,textarea{width:100%;background:#080812;border:1px solid #7146a0;border-radius:7px;padding:13px;color:white;margin:8px 0;outline:none;font-family:inherit}
+textarea{resize:vertical;min-height:90px}
 #out{white-space:pre-wrap;color:#8affb4;line-height:1.7;min-height:60px;margin-top:15px;font-family:monospace}
 .terminal{background:#020805;border:1px solid #1d7543;border-radius:10px;padding:15px;font-family:monospace}
 .terminal input{border-color:#1d7543;color:#8affb4}
 .green{color:#75ff9b}
+.entry{background:#090916;border:1px solid #382653;padding:13px;border-radius:9px;margin:10px 0;overflow-wrap:anywhere}
+.entry strong{color:#c58aff}
+.entry small{display:block;color:#777;margin-top:8px}
+#guestStatus{color:#aaa;font-size:13px;min-height:20px}
 footer{text-align:center;color:#666;padding:35px;font-size:12px}
 #matrixCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:.18;pointer-events:none}
 </style>
@@ -47,6 +53,7 @@ footer{text-align:center;color:#666;padding:35px;font-size:12px}
 <p>Her şey göründüğü gibi değildir. Bazı dosyalar saklanır, bazı kapılar bekler.</p>
 <p class="green">SİSTEM DURUMU: ÇEVRİM İÇİ</p>
 </div>
+
 <div class="panel">
 <h2>◈ KEŞFEDİLECEK BÖLGELER</h2>
 <div class="rooms">
@@ -54,6 +61,7 @@ footer{text-align:center;color:#666;padding:35px;font-size:12px}
 <div class="room" onclick="show('terminal')">⌨️<br><br>Terminal</div>
 <div class="room" onclick="show('void')">🌌<br><br>Boşluk</div>
 <div class="room" onclick="show('gate')">🔒<br><br>Gizli Kapı</div>
+<div class="room" onclick="openGuestbook()">📖<br><br>Ziyaretçi Defteri</div>
 </div>
 </div>
 </section>
@@ -68,7 +76,7 @@ footer{text-align:center;color:#666;padding:35px;font-size:12px}
 </section>
 
 <section id="terminal" class="hidden panel">
-<h2>⌨️ LOST TERMINAL v4.0</h2>
+<h2>⌨️ LOST TERMINAL v5.0</h2>
 <p class="green">Sistem hazır. Komut için help yaz.</p>
 <div class="terminal">
 <div id="out">LOST OS BAŞLATILDI...</div>
@@ -93,14 +101,48 @@ footer{text-align:center;color:#666;padding:35px;font-size:12px}
 <p id="gateResult"></p>
 <button onclick="show('home')">← GERİ DÖN</button>
 </section>
+
+<section id="guestbook" class="hidden panel">
+<h2>📖 GUESTBOOK.exe</h2>
+<p class="green">KAYIP AĞA BİR MESAJ BIRAK</p>
+<p>Buradan geçenlere küçük bir iz bırak.</p>
+
+<form id="guestForm">
+<input id="guestName" maxlength="20" minlength="2"
+placeholder="Takma adın (2-20 karakter)" required>
+<textarea id="guestMessage" maxlength="300"
+placeholder="Mesajını yaz (en fazla 300 karakter)" required></textarea>
+<button id="sendButton" type="submit">MESAJI GÖNDER ↗</button>
+</form>
+
+<p id="guestStatus">Mesajlar yükleniyor...</p>
+<div id="guestEntries"></div>
+<button onclick="loadMessages()">↻ YENİLE</button>
+<button onclick="show('home')">← GERİ DÖN</button>
+</section>
 </main>
 
 <footer>LOST INTERNET © 2026 — UNKNOWN NETWORK</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+// SUPABASE BAĞLANTISI
+const SUPABASE_URL = "https://zbimoghbawzcjrvkhfzs.supabase.co";
+const SUPABASE_KEY = "sb_publishable_TzsmUjNxNNLlPfmAl2OaLA_oZZlf3Xe";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
 function show(id){
 document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
 document.getElementById(id).classList.remove('hidden');
+}
+
+function openGuestbook(){
+show('guestbook');
+loadMessages();
 }
 
 function run(){
@@ -108,22 +150,17 @@ let c=document.getElementById('cmd').value.trim().toLowerCase();
 let o=document.getElementById('out');
 let answers={
 help:"KOMUTLAR:\nhelp\nabout\ndate\nsecret\nrooms\nmatrix\nhack\nwhoami\nunlock\nclear",
-about:"LOST OS v4.0\nKuruluş: 2026\nDurum: Bilinmeyen\nKonum: Dijital boşluk",
+about:"LOST OS v5.0\nKuruluş: 2026\nDurum: Bilinmeyen\nKonum: Dijital boşluk",
 date:new Date().toLocaleString('tr-TR'),
 secret:"SİSTEM MESAJI:\nBAZI KAPILAR SADECE MERAK EDENLERE AÇILIR.",
-rooms:"4 BÖLGE TESPİT EDİLDİ.\nANA SAYFAYA DÖN VE KEŞFET.",
-matrix:"WAKE UP...\nTHE MATRIX HAS YOU.\n01001000 01000001 01000011 01001011",
+rooms:"5 BÖLGE TESPİT EDİLDİ.\nANA SAYFAYA DÖN VE KEŞFET.",
+matrix:"WAKE UP...\nTHE MATRIX HAS YOU.\n01001000 01000001 01000011 01001011\n[MATRIX MODU AKTİF]",
 hack:"SİSTEME BAĞLANILIYOR...\nIP ADRESİ GİZLENİYOR...\nGÜVENLİK DUVARI AŞILDI...\nŞAKA :) BU SADECE BİR SİMÜLASYON.",
 whoami:"KULLANICI: UNKNOWN\nKONUM: LOST INTERNET\nDURUM: KAYIP\nKİMLİK: HENÜZ BULUNAMADI.",
 unlock:"GİZLİ KAPI TESPİT EDİLDİ.\nİPUCU: KAYIP SAYFALARIN NUMARASINI HATIRLA.\n404"
 };
 if(c==="clear"){o.textContent="TERMINAL TEMİZLENDİ.";}
-else if(c==="matrix"){
-o.textContent=answers.matrix+"\n\n[ MATRIX MODU AKTİF ]";
-document.body.classList.add('matrix-mode');
-}else{
-o.textContent=answers[c]||"HATA: KOMUT TANINMADI.\nhelp yazarak komutları görebilirsin.";
-}
+else{o.textContent=answers[c]||"HATA: KOMUT TANINMADI.\nhelp yazarak komutları görebilirsin.";}
 document.getElementById('cmd').value='';
 }
 
@@ -143,9 +180,86 @@ r.style.color="#ff6b8a";
 }
 }
 
+// ZİYARETÇİ DEFTERİ
+async function loadMessages(){
+const status=document.getElementById('guestStatus');
+const entries=document.getElementById('guestEntries');
+status.textContent="Mesajlar yükleniyor...";
+entries.replaceChildren();
+
+const {data,error}=await db
+.from('guestbook')
+.select('id, username, message, created_at')
+.order('created_at',{ascending:false})
+.limit(50);
+
+if(error){
+status.textContent="Mesajlar yüklenemedi: "+error.message;
+return;
+}
+
+if(!data || data.length===0){
+status.textContent="Henüz mesaj yok. İlk mesajı sen bırak!";
+return;
+}
+
+status.textContent="SON MESAJLAR — "+data.length+" kayıt";
+
+data.forEach(item=>{
+const card=document.createElement('div');
+card.className='entry';
+
+const name=document.createElement('strong');
+name.textContent=item.username;
+
+const message=document.createElement('p');
+message.textContent=item.message;
+
+const time=document.createElement('small');
+time.textContent=new Date(item.created_at).toLocaleString('tr-TR');
+
+card.append(name,message,time);
+entries.appendChild(card);
+});
+}
+
+document.getElementById('guestForm').addEventListener('submit',async function(e){
+e.preventDefault();
+
+const name=document.getElementById('guestName').value.trim();
+const message=document.getElementById('guestMessage').value.trim();
+const status=document.getElementById('guestStatus');
+const button=document.getElementById('sendButton');
+
+if(name.length<2 || name.length>20 || message.length<1 || message.length>300){
+status.textContent="Takma ad 2-20, mesaj 1-300 karakter olmalı.";
+return;
+}
+
+button.disabled=true;
+status.textContent="Mesajın gönderiliyor...";
+
+const {error}=await db.from('guestbook').insert({
+username:name,
+message:message
+});
+
+button.disabled=false;
+
+if(error){
+status.textContent="Mesaj gönderilemedi: "+error.message;
+return;
+}
+
+document.getElementById('guestMessage').value="";
+status.textContent="Mesajın kaydedildi! 👾";
+await loadMessages();
+});
+
 const canvas=document.getElementById('matrixCanvas');
 const ctx=canvas.getContext('2d');
 let drops=[];
+
 function resize(){
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
@@ -153,6 +267,7 @@ drops=Array(Math.floor(canvas.width/18)).fill(1);
 }
 resize();
 window.addEventListener('resize',resize);
+
 function drawMatrix(){
 ctx.fillStyle="rgba(5,5,16,0.08)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -169,3 +284,5 @@ setInterval(drawMatrix,65);
 </script>
 </body>
 </html>
+
+
